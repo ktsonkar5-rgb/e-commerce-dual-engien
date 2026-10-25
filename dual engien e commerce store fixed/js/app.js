@@ -7,7 +7,7 @@
    CONFIGURATION
 ========================================================= */
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = window.NOVA_API_URL || "http://localhost:5000/api";
 
 const WHATSAPP_NUMBER = "918448502537";
 
@@ -333,15 +333,17 @@ function currentProducts() {
 
 function featuredProducts() {
 
-    return currentProducts()
+    const products = currentProducts();
 
-        .filter(product =>
+    const featured = products.filter(product =>
 
             product.featured === true
 
             || product.featured === "true"
 
-        )
+        );
+
+    return (featured.length ? featured : products)
 
         .slice(0, MAX_FEATURED_PRODUCTS);
 
@@ -2557,5 +2559,3 @@ console.log(
     "NOVA MARKET Complete App System Loaded"
 
 );
-
-

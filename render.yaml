@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: nova-market
+    runtime: node
+    rootDir: "dual engien e commerce store fixed"
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_SETUP_KEY
+        generateValue: true
+      - key: WHATSAPP_NUMBER
+        value: "918448502537"

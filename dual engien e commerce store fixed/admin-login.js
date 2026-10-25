@@ -1,6 +1,6 @@
 const API_URL =
 
-    "http://localhost:5000/api";
+    window.NOVA_API_URL || "http://localhost:5000/api";
 
 
 const loginForm =

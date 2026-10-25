@@ -9,7 +9,7 @@
    CONFIGURATION
 ========================================= */
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = window.NOVA_API_URL || "http://localhost:5000/api";
 
 const WHATSAPP_NUMBER = "918448502537";
 

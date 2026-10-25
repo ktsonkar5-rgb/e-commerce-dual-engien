@@ -28,3 +28,24 @@
 6. Start the backend:
    `npm run dev`
 7. Open `admin-login.html` through a local frontend server.
+
+## Deploying the complete site on Render
+
+The repository-root `render.yaml` deploys the storefront, admin pages, and API
+as one Node web service, so the frontend uses the deployed API automatically.
+
+1. Push the repository to GitHub and create a MongoDB Atlas database. Configure
+   Atlas network access for Render and copy the database connection string.
+2. In Render, choose **New → Blueprint**, connect the repository, and apply
+   `render.yaml` at the repository root.
+3. Set `MONGO_URI` to the Atlas connection string in the Render service's
+   environment settings. Keep database credentials out of GitHub and chat.
+   Render generates `JWT_SECRET` and `ADMIN_SETUP_KEY` for the service.
+4. Wait for the `/health` check to pass. Open the Render service URL for the
+   storefront and append `/admin-login.html` for the admin login.
+5. Sign in with the existing admin account in the configured MongoDB database.
+   Do not call `/api/auth/create-admin` when an admin already exists.
+
+The free Render service may sleep when idle, so its first request after a period
+of inactivity can take longer. Change any temporary or weak admin password
+before using the deployed store.
